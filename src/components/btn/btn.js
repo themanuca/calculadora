@@ -1,15 +1,19 @@
-const number = ({clique, numero, nome })=>{
-
-
+const Btn = (label, onClick)=>{
     return(
-        <>
-            <div>
-                <button name= {nome} onClick={clique}>{numero}</button>  
-            </div>
-        </>
+        <button style={cssBtn} onClick={onClick}>{label}</button>
     )
 }
 
-export default number
+const cssBtn={
+    fontSize:30,
+    height:75,
+    width:75,
+    padding:20,
+    backgroundColor:'#000',
+    color:'#fff',
+    borderColor:'#000',
+    textAlign:'center',
+    outline:'none'
+}
 
-// Aquui estpu passando um EVENTO POR PROPS
+export default Btn
