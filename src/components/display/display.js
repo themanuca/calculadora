@@ -7,6 +7,7 @@ export default function Display(){
     const [resultado, setResultado] = useState(0)
     const [acumulador, setAcumulador] = useState(0)
     const [operado, setOperado] = useState(false)
+    const [disable, setDisable] = useState('')
 
     const cssTelaOper = {
         fontSize:25,
@@ -42,25 +43,29 @@ export default function Display(){
     }
 
     <Btn/>
+
     
     const addDigitoTela  = (d)=>{
         if((d=='+' || d=='-'|| d=='*'||d=='/') && operado){
-    
-            console.log("foi")
+            
             setOperado(false)
             setValorTela(resultado + d)
+            
             return
     
         }
-    
+        
+
         if(operado){
+            
             setValorTela(d)
             setOperado(false)
             return
         }
-    
+        
         const valorDigitadoTela=valorTela + d
         setValorTela(valorDigitadoTela)
+
     }
     
     
@@ -76,6 +81,7 @@ export default function Display(){
         if(oper =='bs'){
             let vtela = valorTela
             vtela = vtela.substring(0,(vtela.length-1))
+          
             setValorTela(vtela)
             setOperado(false)
             return
@@ -119,23 +125,23 @@ export default function Display(){
                 {Tela(valorTela,resultado)}
                 <div style={cssBotoes}>
                   {Btn('AC', limparMemoria)}
-                  {Btn('(',()=>addDigitoTela('('))}
-                  {Btn(')',()=>addDigitoTela(')'))}
-                  {Btn('/',()=>addDigitoTela('/'))}
+                  {Btn('(',()=>addDigitoTela('('),disable)}
+                  {Btn(')',()=>addDigitoTela(')'),disable)}
+                  {Btn('/',()=>addDigitoTela('/'),disable)}
                   {Btn('7',()=>addDigitoTela('7'))}
                   {Btn('8',()=>addDigitoTela('8'))}
                   {Btn('9',()=>addDigitoTela('9'))}
-                  {Btn('*',()=>addDigitoTela('*'))}
+                  {Btn('*',()=>addDigitoTela('*'),disable)}
                   {Btn('4',()=>addDigitoTela('4'))}
                   {Btn('5',()=>addDigitoTela('5'))}
                   {Btn('6',()=>addDigitoTela('6'))}
-                  {Btn('+',()=>addDigitoTela('+'))}
+                  {Btn('+',()=>addDigitoTela('+'),disable)}
                   {Btn('1',()=>addDigitoTela('1'))}
                   {Btn('2',()=>addDigitoTela('2'))}
                   {Btn('3',()=>addDigitoTela('3'))}
-                  {Btn('-',()=>addDigitoTela('-'))}
+                  {Btn('-',()=>addDigitoTela('-'),disable)}
                   {Btn('0',()=>addDigitoTela('0'))}
-                  {Btn('.',()=>addDigitoTela('.'))}
+                  {Btn('.',()=>addDigitoTela('.'),disable)}
                   {Btn('<-',()=>Operacao('bs'))}
                   {Btn('=',()=>Operacao('='))}
 
